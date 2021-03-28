@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+}
+.content {
+  text-align: center;
+}
+.card-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card-container > div {
+  width: 30%;
+}

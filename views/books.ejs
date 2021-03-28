@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="/css/bookstyle.css">
+    <title>Books</title>
+  </head>
+  <body>
+    <div class="ui menu">    
+        
+    <% if(user){ %>
+      <a href="/api/books/?show=loved" class="loved item pink inverted <% if(showLoved) {%> active <%}%>">Loved &nbsp; <i class="fas fa-heart"></i></a>
+      <a href="/api/books/" class="full-list item blue inverted <% if(!showLoved) {%> active <%}%>">Full List &nbsp; <i class="fas fa-list"></i></a>  
+      <div class="right menu"></div>
+        <% if(user?.role=="admin") {%>
+          <a href="/api/admin" class="item">Admin Dashboard</a>
+        <%}%>
+        <a href="/api/user/logout" class="item">Log out</a>
+        <a class="item">Hello <%= user.name%></a>
+  <%} else {%>
+    <div class="right menu"></div>
+        <a href="/api/user/register" class="item">Sign up</a>
+        <a href="/api/user/login" class="item">Log in</a>
+   <% } %>
+      </div>
+    </div>
+
+    <% if(!showLoved) { %>
+      <form action="" method="GET" class="ui icon input searchForm">
+        <div class="ui icon input">
+          <input type="text" name="search" placeholder="Search...">
+          <i class="search-btn inverted circular search link icon "></i>
+        </div>      
+      </form>
+    <%}%>
+
+    <div class="admin-add-container">
+      <% if(user?.role == "admin") { %>
+        <h2 class="admin-add"><a href="/api/admin/books/add" class="ui green button">Add a Book &nbsp; <i class="fas fa-plus-square"></i></a></h2>
+      <%}%>
+    </div>
+
+    <div class="ui segment">
+      
+      <div class="ui unstackable items">
+        <% books.forEach(book=>{ %>
+          <% if(!showLoved || user.favouriteBooks.includes(book._id)) { %>
+        <div class="item">
+          <div class="image">
+            <img src="<%= book.imgLink %>" />
+          </div>
+          <div class="content">
+            <div class="book-card-header">
+              <h2 class="header bookName" data-bookid="<%=book._id%>"><%= book.name %></h2>
+              <%if(user && user.favouriteBooks.includes(book._id)) {%>
+                <h2 class="add-to-fav"><a href="/api/books/favouriteRemove/<%= book._id %>"  class="ui brown button">Remove from <i class="fas fa-heart"></i></a></h2>
+                <%} else if(user) {%>
+                  <h2 class="add-to-fav"><a href="/api/books/favouriteAdd/<%= book._id %>" class="ui purple button">Add to <i class="fas fa-heart"></i></a></h2>
+              <%}%>
+            </div>
+            <% if(user?.role == "admin") { %>
+              <form action="/api/admin/books/remove/<%= book._id %>?_method=DELETE" method="POST">
+                <h2 class="admin-remove"><button class="ui red button">Remove &nbsp; <i class="fas fa-trash-alt"></i></button></h2>
+              </form>
+              <h2 class="admin-remove"><a href="/api/admin/books/edit/<%= book._id %>" class="ui orange button">Edit &nbsp; <i class="fas fa-edit"></i></a></h2>
+            <%}%>
+            <div class="description">
+              <p><%= book.description %></p>
+            </div>
+            <h4 class="header">
+              <span class="extra">Written By: <span class="Author"><%= book.author %></span> 
+            </h4>
+            <div class="extra">Rating:<span class="rate-result"><%=book.rating.toFixed(2)%></span>
+              <div data-rating="<%= book.rating %>" class="filler"></div>
+              <div class="stars-container">
+                <img src="/images/1.png" alt="not found" />
+                <img src="/images/1.png" alt="not found" />
+                <img src="/images/1.png" alt="not found" />
+                <img src="/images/1.png" alt="not found" />
+                <img src="/images/1.png" alt="not found" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+
+          <%}%>
+        <%})%>
+
+      </div>
+    </div>
+    <script src="/javascript/bookDDOM.js"></script>
+
+  <!-- <script src="semantic/dist/semantic.min.js"></script>  -->
+  </body>
+</html>
+

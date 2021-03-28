@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="/css/bookstyle.css">
+    <title>Manage Users</title>
+  </head>
+  <body>
+    <div class="ui menu">    
+        
+    <% if(currentUser){ %>
+      <a href="/api/books/" class="full-list item blue inverted">Go to Books</a>  
+      <div class="right menu"></div>
+        <% if(currentUser?.role=="admin") {%>
+          <a href="/api/admin" class="item">Admin Dashboard</a>
+        <%}%>
+        <a href="/api/user/logout" class="item">Log out</a>
+        <a class="item">Hello <%= currentUser.name%></a>
+  <%} else {%>
+    <div class="right menu"></div>
+        <a href="/api/user/register" class="item">Sign up</a>
+        <a href="/api/user/login" class="item">Log in</a>
+   <% } %>
+      </div>
+    </div>
+
+    <% if(true) { %>
+      <form action="" method="GET" class="ui icon input searchForm">
+        <div class="ui icon input">
+          <input type="text" name="search" placeholder="Search...">
+          <i class="search-btn inverted circular search link icon "></i>
+        </div>      
+      </form>
+    <%}%>
+
+    <div class="ui segment">
+        <table class="ui five column table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>To Delete</th>
+                    <th>Assign a role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%users.forEach((user, index) => {%>
+                    <tr>
+                      <td><%= user.name %></td>
+                      <td>
+                        <form class="role-form" data-nth="<%= index %>" action="/api/admin/users/<%= user._id %>?_method=PUT" method="POST" >
+                            <select name="role" class="ui dropdown">
+                                <option <% if(user.role === "admin"){%> selected <%}%> value="admin">Admin</option>
+                                <option <% if(user.role === "user"){%> selected <%}%> value="user">User</option>
+                            </select>
+                        </form>
+                    </td>
+                      <td>
+                          <form action="/api/admin/users/<%= user._id %>?_method=DELETE" method="POST" >
+                            <button class="ui red basic button"><i class="fas fa-trash-alt"></i></button>
+                          </form>
+                      </td>
+                      <td>
+                            <button type="button" class="ui olive basic button role-form-btn"><i class="fas fa-user-tag"></i></button>
+                      </td>
+                    </tr>
+                <%})%>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th><%= users.length%> People</th>
+                    <th><%= users.filter(user=> user.role=="admin").length%> Admin/s</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+        </tfoot>
+          </table>
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="/javascript/manage_users.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="/css/bookstyle.css" />
+
+    <title>Book Adding</title>
+  </head>
+  <body>
+    <!-- <% if(currentUser){ %>
+      <a href="/api/books/" class="full-list item blue inverted">Go to Books</a>  
+      <div class="right menu"></div>
+        <% if(currentUser?.role=="admin") {%>
+          <a href="/api/admin" class="item">Admin Dashboard</a>
+        <%}%>
+        <a href="/api/user/logout" class="item">Log out</a>
+        <a class="item">Hello <%= currentUser.name%></a>
+  <%} else {%>
+    <div class="right menu"></div>
+        <a href="/api/user/register" class="item">Sign up</a>
+        <a href="/api/user/login" class="item">Log in</a>
+   <% } %>
+      </div>
+    </div> -->
+
+    <div class="ui segment">
+      <h1 class="ui olive header">Add a Book</h1>
+      <form action="" method="POST" class="ui form">
+        <div class="field">
+          <label>Book Name</label>
+          <input
+            type="text"
+            name="name"
+            value=""
+            placeholder="Enter the book name"
+          />
+        </div>
+        <div class="field">
+          <label>Author Name</label>
+          <input
+            type="text"
+            name="author"
+            value=""
+            placeholder="Enter the author's name"
+          />
+        </div>
+        <div class="field">
+          <label>Book Name</label>
+          <textarea
+            name="description"
+            rows="5"
+            placeholder="Enter the description here"
+          ></textarea>
+        </div>
+
+        <div class="field">
+          <label>Image Link</label>
+          <input
+            type="text"
+            name="imgLink"
+            value=""
+            placeholder="Enter the image link here"
+          />
+        </div>
+
+        <div class="ui buttons">
+          <a href="/api/books/" class="ui button active"> Cancel </a>
+          <div class="or"></div>
+          <button type="submit" class="ui positive button">Save</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

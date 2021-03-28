@@ -1,0 +1,57 @@
+img {
+  width: 25px;
+  height: 25px;
+  z-index: 5;
+}
+.stars-container {
+  font-size: 0;
+  position: absolute;
+}
+.filler {
+  position: absolute;
+  height: 25px;
+  width: 111px;
+  z-index: 0;
+  background-color: #ffdf00;
+}
+.Author {
+  color: black;
+}
+.description p {
+  font-size: 1.5rem;
+  max-width: 700px;
+}
+.header {
+  transition-property: color;
+  transition-duration: 200ms;
+}
+.header:hover {
+  color: grey !important;
+  cursor: pointer;
+}
+.add-button {
+  display: block !important;
+  width: 150px;
+  margin: auto !important;
+}
+.book-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.add-to-fav {
+  font-size: 1.5rem;
+  margin-top: 0px;
+}
+.searchForm {
+  width: 205px;
+  margin-left: calc(50% - 102.5px);
+}
+.admin-remove {
+  text-align: right;
+  margin-top: 0px !important;
+  margin-bottom: 0.25em !important;
+}
+
+.admin-add-container {
+  padding-left: 1em;
+}
