@@ -35,6 +35,6 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
-app.listen(2008, () => {
+app.listen(process.env.PORT || 2007, () => {
   console.log("server is up and running");
 });
