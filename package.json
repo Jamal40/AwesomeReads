@@ -1,11 +1,11 @@
 {
-  "name": "node.js-project",
+  "name": "awesome-reads",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "build": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +20,8 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.12.1",
     "nodemon": "^2.0.7"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
