@@ -4,31 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
     />
     <link rel="stylesheet" href="/css/bookstyle.css">
 
-    <title>Book Deatils</title>
+    <title>Book Details</title>
   </head>
   <body>
-    <% if(user){ %>
-      <div class="ui menu">
-        <div class="right menu">
-          <a href="/api/user/logout" class="item">Log out</a>
-          <a class="item">Hello <%= user.name%></a>
-        </div>
-      </div>
-    <%} else {%>
-      <div class="ui menu">
-        <div class="right menu">
-          <a href="/api/user/register" class="item">Sign up</a>
-          <a href="/api/user/login" class="item">Log in</a>
-        </div>
-      </div>
-     <% } %>
+
+    <%- include('top_bar', {user:user}) %>
+
     <div class="ui segment">
         <div class="ui unstackable items">
             <div class="item">

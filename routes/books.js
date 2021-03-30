@@ -92,6 +92,7 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.get("/:id", auth, async (req, res) => {
+  let showLoved = "none";
   let alreadyReviewed = false;
   const user = await User.findById(req.user?._id);
   const reviews = await Review.aggregate([
@@ -188,6 +189,7 @@ router.get("/:id", auth, async (req, res) => {
     relatedRate: avgRate,
     user: user,
     alreadyReviewed: alreadyReviewed,
+    showLoved: showLoved,
   });
 });
 

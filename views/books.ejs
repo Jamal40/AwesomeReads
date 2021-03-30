@@ -14,24 +14,8 @@
     <title>Books</title>
   </head>
   <body>
-    <div class="ui menu">    
-        
-    <% if(user){ %>
-      <a href="/api/books/?show=loved" class="loved item pink inverted <% if(showLoved) {%> active <%}%>">Loved &nbsp; <i class="fas fa-heart"></i></a>
-      <a href="/api/books/" class="full-list item blue inverted <% if(!showLoved) {%> active <%}%>">Full List &nbsp; <i class="fas fa-list"></i></a>  
-      <div class="right menu"></div>
-        <% if(user?.role=="admin") {%>
-          <a href="/api/admin" class="item">Admin Dashboard</a>
-        <%}%>
-        <a href="/api/user/logout" class="item">Log out</a>
-        <a class="item">Hello <%= user.name%></a>
-  <%} else {%>
-    <div class="right menu"></div>
-        <a href="/api/user/register" class="item">Sign up</a>
-        <a href="/api/user/login" class="item">Log in</a>
-   <% } %>
-      </div>
-    </div>
+    
+    <%- include('top_bar', {user:user}) %>
 
     <% if(!showLoved) { %>
       <form action="" method="GET" class="ui icon input searchForm">
@@ -49,7 +33,7 @@
     </div>
 
     <div class="ui segment">
-      
+
       <div class="ui unstackable items">
         <% books.forEach(book=>{ %>
           <% if(!showLoved || user.favouriteBooks.includes(book._id)) { %>
@@ -76,9 +60,9 @@
               <p><%= book.description %></p>
             </div>
             <h4 class="header">
-              <span class="extra">Written By: <span class="Author"><%= book.author %></span> 
+              <span class="extra">Written By: <span class="Author"><%= book.author %></span>
             </h4>
-            <div class="extra">Rating:<span class="rate-result"><%=book.rating.toFixed(2)%></span>
+            <div class="extra">Rating: &nbsp;<span class="rate-result"><%=book.rating.toFixed(2)%></span>
               <div data-rating="<%= book.rating %>" class="filler"></div>
               <div class="stars-container">
                 <img src="/images/1.png" alt="not found" />

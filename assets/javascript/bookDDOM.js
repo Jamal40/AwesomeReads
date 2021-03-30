@@ -11,7 +11,7 @@ const headers = document.querySelectorAll(".bookName");
 for (let header of headers) {
   header.addEventListener("click", (e) => {
     const bookId = e.target.getAttribute("data-bookid");
-    open(`/api/books/${bookId}`);
+    open(`/api/books/${bookId}`, "_Self");
   });
 }
 

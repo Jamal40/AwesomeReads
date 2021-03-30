@@ -14,22 +14,6 @@
     <title>Book Adding</title>
   </head>
   <body>
-    <!-- <% if(currentUser){ %>
-      <a href="/api/books/" class="full-list item blue inverted">Go to Books</a>  
-      <div class="right menu"></div>
-        <% if(currentUser?.role=="admin") {%>
-          <a href="/api/admin" class="item">Admin Dashboard</a>
-        <%}%>
-        <a href="/api/user/logout" class="item">Log out</a>
-        <a class="item">Hello <%= currentUser.name%></a>
-  <%} else {%>
-    <div class="right menu"></div>
-        <a href="/api/user/register" class="item">Sign up</a>
-        <a href="/api/user/login" class="item">Log in</a>
-   <% } %>
-      </div>
-    </div> -->
-
     <div class="ui segment">
       <h1 class="ui olive header">Add a Book</h1>
       <form action="" method="POST" class="ui form">
@@ -52,7 +36,7 @@
           />
         </div>
         <div class="field">
-          <label>Book Name</label>
+          <label>Book Description</label>
           <textarea
             name="description"
             rows="5"
