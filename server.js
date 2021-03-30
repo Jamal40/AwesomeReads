@@ -32,7 +32,7 @@ app.use("/api/reviews", reviewsRoute);
 app.use("/api/admin", adminRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.redirect("/api/user/login");
 });
 
 app.listen(process.env.PORT || 2007, () => {
