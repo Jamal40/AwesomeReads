@@ -2,8 +2,9 @@ const fillers = document.querySelectorAll(".filler");
 
 for (let filler of fillers) {
   let rating = Number(filler.getAttribute("data-rating"));
-  rating *= 125 / 5;
-  filler.style.width = `${rating}px`;
+  getBillerWidthFromrating(rating, filler);
+  // rating *= 125 / 5;
+  // filler.style.width = `${rating}px`;
   // console.log(filler);
 }
 
@@ -33,3 +34,22 @@ const searchBtn = document.querySelector(".search-btn");
 searchBtn.addEventListener("click", () => {
   searchForm.submit();
 });
+
+function getBillerWidthFromrating(rate, filler) {
+  let fullStars = Math.floor(rate);
+  let partialStar = rate - fullStars;
+  let width;
+  if (partialStar > 0.5) {
+    console.log("dd");
+    width =
+      fullStars * 25 +
+      28.7174588749259 * Math.pow(partialStar - 0.5, 1.2) +
+      12.5;
+  }
+  if (partialStar <= 0.5) {
+    console.log("ftt");
+    width = fullStars * 25 + 12.5 * Math.sqrt(2 * partialStar);
+  }
+
+  filler.style.width = `${width}px`;
+}
